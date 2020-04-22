@@ -30,4 +30,3 @@ class TestAdd(unittest.TestCase):
         except AssertionError as e:
             logger.error("断言失败")
             raise e
-
