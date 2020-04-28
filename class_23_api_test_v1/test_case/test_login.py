@@ -45,7 +45,8 @@ class TestLogin(unittest.TestCase):
                             self.url + test_info[4],
                             json=json.loads(test_info[5]),
                             headers=eval(self.headers))
-        print(res)
-        self.assertEqual(str(test_info[7]), str(res))
+        print(type(res))
+        print(type(test_info[7]))
+        self.assertEqual(test_info[7], res)
 
 
