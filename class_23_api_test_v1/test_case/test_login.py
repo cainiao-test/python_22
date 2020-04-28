@@ -6,6 +6,7 @@ from common.config_handler import ConfigHandler, config
 from common.execl_handler import ExcelHandler
 from common.requests_handler import RequestsHandler
 from setting.constant import p_path
+from common.HTMLTestRunnerNew import OutputRedirector
 
 
 @ddt
@@ -17,7 +18,6 @@ class TestLogin(unittest.TestCase):
 
     # Execl表格名称
     sheet_name = config.read('excel', 'login_sheet')
-    print(sheet_name)
     # 读取url地址
     url = config.read('http', 'host')
     # 读取headers
@@ -41,13 +41,11 @@ class TestLogin(unittest.TestCase):
     @data(*test_data)
     def test_login(self, test_info):
         # 调用 requests 模块访问接口
-        print(test_info[3])
-        print(self.url + test_info[4])
-        print(type(json.dumps(test_info[5])))
-        print(eval(self.headers))
         res = self.req.json(test_info[3],
                             self.url + test_info[4],
-                            json={test_info[5]},
+                            json=json.loads(test_info[5]),
                             headers=eval(self.headers))
         print(res)
-        self.assertEqual(test_info[7], res)
+        self.assertEqual(str(test_info[7]), str(res))
+
+
