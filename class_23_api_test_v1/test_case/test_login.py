@@ -1,7 +1,8 @@
 import json
 import unittest
 import os
-from ddt import ddt, data
+from common.logger_handler import logger
+from libs.ddt import ddt, data
 from common.config_handler import ConfigHandler, config
 from common.execl_handler import ExcelHandler
 from common.requests_handler import RequestsHandler
@@ -17,17 +18,20 @@ class TestLogin(unittest.TestCase):
 
     # Execl表格名称
     sheet_name = config.read('excel', 'login_sheet')
-    print(sheet_name)
     # 读取url地址
     url = config.read('http', 'host')
     # 读取headers
     headers = config.read('http', 'headers')
-    test_data = ExcelHandler(file_path).read(sheet_name)
+    # Excel 操作
+    xls = ExcelHandler(file_path, sheet_name)
+    test_data = xls.read()
+    excel_headers = xls.headers()
+    result_index = excel_headers.index('result')
 
     @classmethod
     def setUpClass(cls):
         cls.req = RequestsHandler()
-
+        cls.logger = logger
     @classmethod
     def tearDownClass(cls):
         pass
@@ -41,9 +45,22 @@ class TestLogin(unittest.TestCase):
     @data(*test_data)
     def test_login(self, test_info):
         # 调用 requests 模块访问接口
-        res = self.req.json(test_info[3],
-                            self.url + test_info[4],
-                            json=eval(test_info[5]),
+        res = self.req.json(test_info['method'],
+                            self.url + test_info['url'],
+                            json=eval(test_info['data']),
                             headers=eval(self.headers))
         print(res)
-        self.assertEqual(test_info[7], res['message'])
+        try:
+            self.assertEqual(test_info['expected'], res['message'])
+            # 写入Excel 断言成功
+            self.logger.info("断言成功")
+            self.xls.write(test_info['case_id'] + 1,
+                           self.result_index + 1,
+                           'pass')
+        except AssertionError as e:
+            # 写入Excel 断言失败
+            self.logger.info("断言失败")
+            self.xls.write(test_info['case_id'] + 1,
+                           self.result_index + 1,
+                           'failed')
+            raise e

@@ -291,6 +291,11 @@ def ddt(cls):
         if hasattr(func, DATA_ATTR):
             for i, v in enumerate(getattr(func, DATA_ATTR)):
                 test_name = mk_test_name(name, getattr(v, "__name__", v), i)
+                if isinstance(v, list):
+                    test_name = mk_test_name(name, v[2], i)
+                elif isinstance(v, dict):
+                    test_name = mk_test_name(name, v['title'], i)
+
                 test_data_docstring = _get_test_data_docstring(func, v)
                 if hasattr(func, UNPACK_ATTR):
                     if isinstance(v, tuple) or isinstance(v, list):

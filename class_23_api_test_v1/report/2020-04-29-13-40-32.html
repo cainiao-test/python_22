@@ -116,8 +116,8 @@ function html_escape(s) {
 <div class='heading'>
 <h1 style="font-family: Microsoft YaHei">医品云商接口测试报告</h1>
 <p class='attribute'><strong>测试人员 : </strong> lemon</p>
-<p class='attribute'><strong>开始时间 : </strong> 2020-04-29 11:25:23</p>
-<p class='attribute'><strong>合计耗时 : </strong> 0:00:00.752582</p>
+<p class='attribute'><strong>开始时间 : </strong> 2020-04-29 13:40:32</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:00.751529</p>
 <p class='attribute'><strong>测试结果 : </strong> 共 8，通过 8，通过率= 100.00%</p>
 
 <p class='description'>伏特</p>
@@ -172,7 +172,7 @@ function html_escape(s) {
 </tr>
 
 <tr id='pt2_1' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_login_1__1___登录____手机号为空____post_____api_v1_user_login______tel__________headers_____n_____Content_Type___application_json__n_____请输入手机号___None_</div></td>
+    <td class='passCase'><div class='testcase'>test_login_1_手机号为空</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
     <button id='btn_pt2_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_1'>通过</button>
@@ -191,7 +191,7 @@ pt2_1: {'status': 'error', 'code': 400, 'message': '请输入手机号'}
 </tr>
 
 <tr id='pt2_2' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_login_2__2___登录____密码为空____post_____api_v1_user_login______tel___15812410167____password__________headers_____n_____Content_Type___application_json__n_____账号密码不正确_请重新输入___None_</div></td>
+    <td class='passCase'><div class='testcase'>test_login_2_密码为空</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
     <button id='btn_pt2_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_2'>通过</button>
@@ -210,7 +210,7 @@ pt2_2: {'status': 'error', 'code': 400, 'message': '账号密码不正确，请�
 </tr>
 
 <tr id='pt2_3' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_login_3__3___登录____小于11位的手机号____post_____api_v1_user_login______tel___1______headers_____n_____Content_Type___application_json__n_____该手机号未注册___None_</div></td>
+    <td class='passCase'><div class='testcase'>test_login_3_小于11位的手机号</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
     <button id='btn_pt2_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_3'>通过</button>
@@ -229,7 +229,7 @@ pt2_3: {'status': 'error', 'code': 400, 'message': '该手机号未注册'}
 </tr>
 
 <tr id='pt2_4' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_login_4__4___登录____大于11位的手机号____post_____api_v1_user_login______tel___1111111111111______headers_____n_____Content_Type___application_json__n_____该手机号未注册___None_</div></td>
+    <td class='passCase'><div class='testcase'>test_login_4_大于11位的手机号</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
     <button id='btn_pt2_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_4'>通过</button>
@@ -248,7 +248,7 @@ pt2_4: {'status': 'error', 'code': 400, 'message': '该手机号未注册'}
 </tr>
 
 <tr id='pt2_5' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_login_5__5___登录____错误的手机号____post_____api_v1_user_login______tel___abc123______headers_____n_____Content_Type___application_json__n_____请输入正确的手机号___None_</div></td>
+    <td class='passCase'><div class='testcase'>test_login_5_错误的手机号</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
     <button id='btn_pt2_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_5'>通过</button>
@@ -267,7 +267,7 @@ pt2_5: {'status': 'error', 'code': 400, 'message': '请输入正确的手机号'
 </tr>
 
 <tr id='pt2_6' class='hiddenRow'>
-    <td class='passCase'><div class='testcase'>test_login_6__6___登录____错误的密码____post_____api_v1_user_login______tel___15812410167____password____12345______headers_____n_____Content_Type___application_json__n_____账号密码不正确_请重新输入___None_</div></td>
+    <td class='passCase'><div class='testcase'>test_login_6_错误的密码</div></td>
     <td colspan='5' align='center'>
     <!--默认收起错误信息 -Findyou
     <button id='btn_pt2_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt2_6'>通过</button>
