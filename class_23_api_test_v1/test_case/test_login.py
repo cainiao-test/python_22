@@ -14,10 +14,10 @@ class TestLogin(unittest.TestCase):
     # 读取配置文件
     file_name = 'E:\远信集团\python_22\class_23_api_test_v1\data\cases.xlsx'
     file_path = os.path.join(p_path.DATA_PATH, file_name)
-    print(file_path)
 
     # Execl表格名称
     sheet_name = config.read('excel', 'login_sheet')
+    print(sheet_name)
     # 读取url地址
     url = config.read('http', 'host')
     # 读取headers
@@ -43,11 +43,7 @@ class TestLogin(unittest.TestCase):
         # 调用 requests 模块访问接口
         res = self.req.json(test_info[3],
                             self.url + test_info[4],
-                            json=json.loads(test_info[5]),
+                            json=eval(test_info[5]),
                             headers=eval(self.headers))
         print(res)
-        a = eval(test_info[7])
-        print(a)
-        self.assertEqual(a, res)
-
-
+        self.assertEqual(test_info[7], res['message'])

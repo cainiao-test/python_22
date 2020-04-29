@@ -1,8 +1,6 @@
 import os
 import unittest
 
-
-
 # 初始化 suite
 from datetime import datetime
 
@@ -15,10 +13,13 @@ suite = unittest.TestSuite()
 loader = unittest.TestLoader()
 
 # discover 自动发现测试
+suite = loader.discover(p_path.CASE_PATH)
 
 # report + 时间戳后缀.html
 report_name = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+print(report_name)
 report_file = os.path.join(p_path.REPORT_PATH, report_name + '.html')
+print(report_file)
 
 if __name__ == '__main__':
     with open(report_file, 'wb') as f:
