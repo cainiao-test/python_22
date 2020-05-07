@@ -4,15 +4,6 @@ import pymysql
 class DBHandler():
     def __init__(self, host=None, port=3306, user='root', password='', charset='utf8', database=None, **kw):
         """初始化数据库"""
-        # conn = pymysql.connect(
-        #     host='120.78.128.25',
-        #     port=3306,
-        #     user='future',
-        #     password='123456',
-        #     charset='utf8',  # 不能是utf-8
-        #     database='futureloan',
-        # )
-
         self.conn = pymysql.connect(
             host=host,
             port=port,
@@ -36,6 +27,7 @@ class DBHandler():
         return self.cursor.fetchall()
 
     def query(self, sql, args=None, one=True):
+        """主体查询函数"""
         if one:
             return self.query_one(sql, args)
         return self.query_all(sql, args)

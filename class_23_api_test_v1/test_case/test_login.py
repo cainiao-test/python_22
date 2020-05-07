@@ -32,6 +32,7 @@ class TestLogin(unittest.TestCase):
     def setUpClass(cls):
         cls.req = RequestsHandler()
         cls.logger = logger
+
     @classmethod
     def tearDownClass(cls):
         pass
@@ -45,6 +46,7 @@ class TestLogin(unittest.TestCase):
     @data(*test_data)
     def test_login(self, test_info):
         # 调用 requests 模块访问接口
+
         res = self.req.json(test_info['method'],
                             self.url + test_info['url'],
                             json=eval(test_info['data']),
@@ -53,13 +55,11 @@ class TestLogin(unittest.TestCase):
         try:
             self.assertEqual(test_info['expected'], res['message'])
             # 写入Excel 断言成功
-            self.logger.info("断言成功")
             self.xls.write(test_info['case_id'] + 1,
                            self.result_index + 1,
                            'pass')
         except AssertionError as e:
             # 写入Excel 断言失败
-            self.logger.info("断言失败")
             self.xls.write(test_info['case_id'] + 1,
                            self.result_index + 1,
                            'failed')
