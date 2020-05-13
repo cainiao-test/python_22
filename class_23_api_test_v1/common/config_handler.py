@@ -23,7 +23,7 @@ class ConfigHandler:
         try:
             return self.config.get(section, option)
         except NoSectionError:
-            print('没有这个 section1111111')
+            print('没有这个 section')
         except NoOptionError:
             print("没有这个 option")
 
@@ -31,7 +31,7 @@ class ConfigHandler:
         try:
             return self.config[section][option]
         except NoSectionError:
-            print('没有这个 section222222')
+            print('没有这个 section')
         except NoOptionError:
             print("没有这个 option")
 

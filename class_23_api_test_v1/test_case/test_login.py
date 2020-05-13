@@ -6,6 +6,7 @@ from libs.ddt import ddt, data
 from common.config_handler import ConfigHandler, config
 from common.execl_handler import ExcelHandler
 from common.requests_handler import RequestsHandler
+from middler_ware.db_handler import MyDBHandler
 from setting.constant import p_path
 from common.HTMLTestRunnerNew import OutputRedirector
 
@@ -13,7 +14,7 @@ from common.HTMLTestRunnerNew import OutputRedirector
 @ddt
 class TestLogin(unittest.TestCase):
     # 读取配置文件
-    file_name = 'E:\远信集团\python_22\class_23_api_test_v1\data\cases.xlsx'
+    file_name = 'E:/远信集团/python_22/class_23_api_test_v1/data/cases.xlsx'
     file_path = os.path.join(p_path.DATA_PATH, file_name)
 
     # Execl表格名称
@@ -38,14 +39,16 @@ class TestLogin(unittest.TestCase):
         pass
 
     def setUp(self):
-        pass
+        self.db = MyDBHandler()
 
     def tearDown(self):
-        pass
+        self.db.close()
 
     @data(*test_data)
     def test_login(self, test_info):
         # 调用 requests 模块访问接口
+        if "*exist_phone*" in test_info['data']:
+            self.db.query('SELECT * FROM member;')
 
         res = self.req.json(test_info['method'],
                             self.url + test_info['url'],
